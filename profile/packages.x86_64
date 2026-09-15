@@ -54,6 +54,7 @@ xterm
 plank
 conky
 terminator
+wofi
 
 # --- Rete ---
 networkmanager
@@ -72,6 +73,11 @@ htop
 unzip
 zip
 openssh
+
+# --- Internet ---
+chromium
+
+# --- Terminali e utility base ---
 
 # --- Toolchain sviluppo generico ---
 base-devel
