@@ -1,0 +1,13 @@
+XTerm*background: #0d0d0d
+XTerm*foreground: #f2f2f2
+XTerm*renderFont: true
+XTerm*faceName: monospace
+XTerm*faceSize: 11
+
+XTerm*borderWidth: 0
+XTerm*internalBorder: 2
+XTerm*scrollBar: false
+
+XTerm*VT100.Translations: #override \
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)

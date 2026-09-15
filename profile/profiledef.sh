@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # profiledef.sh - archdev profile configuration
 
-iso_name="archdev"
-iso_label="ARCHDEV_$(date +%Y%m)"
+iso_name="shellos"
+iso_label="SHELLOS_$(date +%Y%m)"
 iso_publisher="arch-dev-live <https://github.com/your-user/arch-dev-live>"
 iso_application="Arch Dev Live - Openbox Development ISO"
 iso_version="$(date +%Y.%m.%d)"

@@ -56,6 +56,7 @@ conky
 terminator
 rofi
 picom
+lxrandr
 
 # --- Rete ---
 networkmanager
@@ -93,9 +94,10 @@ fuse-overlayfs
 slirp4netns
 crun
 
-# --- Node.js ---
-nodejs
-npm
+# --- Node.js / bum ---
+#nodejs
+#npm
+bum
 
 # --- PHP ---
 php
