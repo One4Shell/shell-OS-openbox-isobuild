@@ -54,7 +54,7 @@ xterm
 plank
 conky
 terminator
-wofi
+rofi
 
 # --- Rete ---
 networkmanager
