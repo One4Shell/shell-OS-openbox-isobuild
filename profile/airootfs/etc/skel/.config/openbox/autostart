@@ -1,0 +1,16 @@
+#!/bin/sh
+# autostart - eseguito da Openbox all'avvio della sessione
+
+# Wallpaper / sfondo minimale se feh è disponibile
+command -v feh >/dev/null 2>&1 && feh --bg-fill /usr/share/backgrounds/archdev/wallpaper.png 2>/dev/null &
+
+# Barra di stato minimale
+command -v tint2 >/dev/null 2>&1 && tint2 &
+
+# Icone/gestione desktop tramite pcmanfm (opzionale)
+command -v pcmanfm >/dev/null 2>&1 && pcmanfm --desktop &
+
+# Applet di NetworkManager nella tray
+command -v nm-applet >/dev/null 2>&1 && nm-applet &
+
+exit 0

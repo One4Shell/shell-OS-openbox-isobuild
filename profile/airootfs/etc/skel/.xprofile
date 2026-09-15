@@ -1,0 +1,9 @@
+#!/bin/sh
+# .xprofile - eseguito da LightDM/xinit prima di avviare la sessione grafica
+
+# Assicura che NetworkManager applet e servizi di sistema abbiano le variabili corrette
+export XDG_CURRENT_DESKTOP="OPENBOX"
+export XDG_SESSION_TYPE="x11"
+
+# Avvia Openbox come window manager di sessione
+exec openbox-session

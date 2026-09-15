@@ -1,0 +1,89 @@
+# =========================================================
+# arch-dev-live - Elenco pacchetti
+# =========================================================
+
+# --- Base sistema (ereditati/aggiunti dal profilo releng) ---
+base
+linux
+linux-firmware
+mkinitcpio
+mkinitcpio-archiso
+sudo
+nano
+vim
+git
+wget
+curl
+man-db
+man-pages
+bash-completion
+
+# --- Boot loader (necessari per i boot mode BIOS/UEFI abilitati in profiledef.sh) ---
+syslinux
+grub
+efibootmgr
+dosfstools
+mtools
+memtest86+
+memtest86+-efi
+
+# --- Xorg / Display server ---
+xorg-server
+xorg-xinit
+xorg-xrandr
+xorg-xset
+mesa
+
+# --- Login manager grafico ---
+lightdm
+lightdm-gtk-greeter
+
+# --- Window manager ---
+openbox
+pcmanfm
+lxappearance
+tint2
+feh
+xterm
+
+# --- Rete ---
+networkmanager
+network-manager-applet
+dhcpcd
+
+# --- Audio ---
+alsa-utils
+pulseaudio
+pulseaudio-alsa
+pavucontrol
+
+# --- Terminali e utility base ---
+xfce4-terminal
+htop
+unzip
+zip
+openssh
+
+# --- Toolchain sviluppo generico ---
+base-devel
+python
+python-pip
+
+# --- Podman e containerizzazione ---
+podman
+podman-compose
+buildah
+fuse-overlayfs
+slirp4netns
+crun
+
+# --- Node.js ---
+nodejs
+npm
+
+# --- PHP ---
+php
+php-sqlite
+
+# --- Editor: VS Code (pacchetto open-source, community/extra repo) ---
+code
