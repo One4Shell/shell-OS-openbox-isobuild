@@ -36,4 +36,11 @@ file_permissions=(
   ["/etc/skel/.config"]="1000:1000:750"
   ["/etc/skel/.config/openbox"]="1000:1000:750"
   ["/etc/skel/.config/openbox/autostart"]="1000:1000:755"
+  ["/etc/skel/.config/openbox/rc.xml"]="1000:1000:644"
+  ["/etc/skel/.local"]="1000:1000:750"
+  ["/etc/skel/.local/share"]="1000:1000:750"
+  ["/etc/skel/.local/share/themes"]="1000:1000:750"
+  ["/etc/skel/.local/share/themes/ShellOS-Dark"]="1000:1000:750"
+  ["/etc/skel/.local/share/themes/ShellOS-Dark/openbox-3"]="1000:1000:750"
+  ["/etc/skel/.local/share/themes/ShellOS-Dark/openbox-3/themerc"]="1000:1000:644"
 )

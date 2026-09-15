@@ -1,0 +1,92 @@
+! ============================================================
+! ShellOS-Dark - tema Openbox per l'ISO arch-dev-live
+! Palette coerente con tint2:
+!   pannello #2f343f | accento #b181ff | testo #a1a8b9
+!   testo su accento #131c26 | urgent #c67d6f
+! ============================================================
+
+!! --- Bordi e geometria ---
+border.width: 1
+window.client.padding.width: 0
+window.client.padding.height: 0
+window.handle.width: 0
+padding.height: 4
+padding.width: 6
+
+!! --- Titlebar finestra attiva ---
+window.active.title.bg: flat solid
+window.active.title.bg.color: #2f343f
+window.active.label.text.color: #a1a8b9
+window.active.label.text.font: shadow=n
+
+!! --- Titlebar finestra inattiva ---
+window.inactive.title.bg: flat solid
+window.inactive.title.bg.color: #1b1e24
+window.inactive.label.text.color: #5c6370
+window.inactive.label.text.font: shadow=n
+
+!! --- Bordi finestra ---
+window.active.border.color: #4c525c
+window.inactive.border.color: #1b1e24
+window.active.title.separator.color: #2f343f
+window.inactive.title.separator.color: #1b1e24
+
+!! --- Handle e grip (visibili solo con window.handle.width > 0) ---
+window.active.handle.bg: flat solid
+window.active.handle.bg.color: #2f343f
+window.active.grip.bg: flat solid
+window.active.grip.bg.color: #2f343f
+window.inactive.handle.bg: flat solid
+window.inactive.handle.bg.color: #1b1e24
+window.inactive.grip.bg: flat solid
+window.inactive.grip.bg.color: #1b1e24
+
+!! --- Pulsanti titlebar ---
+window.active.button.unpressed.image.color: #a1a8b9
+window.active.button.pressed.image.color: #ffffff
+window.active.button.hover.image.color: #b181ff
+window.active.button.disabled.image.color: #4c525c
+window.inactive.button.unpressed.image.color: #5c6370
+window.inactive.button.pressed.image.color: #a1a8b9
+window.inactive.button.hover.image.color: #a1a8b9
+window.inactive.button.disabled.image.color: #1b1e24
+
+!! Close in evidenza (stesso rosso tenue dell'urgent di tint2)
+window.active.button.close.unpressed.image.color: #c67d6f
+window.active.button.close.hover.image.color: #ff9882
+window.active.button.close.pressed.image.color: #ff9882
+window.inactive.button.close.unpressed.image.color: #5c6370
+window.inactive.button.close.hover.image.color: #c67d6f
+window.inactive.button.close.pressed.image.color: #c67d6f
+
+!! --- Menu (root menu / menu finestre) ---
+menu.border.width: 1
+menu.border.color: #1b1e24
+menu.overlap.x: 0
+menu.title.bg: flat solid
+menu.title.bg.color: #2f343f
+menu.title.text.color: #a1a8b9
+menu.title.text.justify: center
+menu.items.bg: flat solid
+menu.items.bg.color: #2f343f
+menu.items.text.color: #a1a8b9
+menu.items.disabled.text.color: #5c6370
+menu.items.active.bg: flat solid
+menu.items.active.bg.color: #b181ff
+menu.items.active.text.color: #131c26
+menu.items.active.disabled.text.color: #5c6370
+menu.separator.width: 1
+menu.separator.padding.width: 6
+menu.separator.padding.height: 6
+menu.separator.color: #4c525c
+
+!! --- OSD (popup switch desktop / resize) ---
+osd.bg: flat solid
+osd.bg.color: #2f343f
+osd.label.text.color: #a1a8b9
+osd.hilight.bg: flat solid
+osd.hilight.bg.color: #b181ff
+osd.unhilight.bg: flat solid
+osd.unhilight.bg.color: #1b1e24
+osd.border.width: 1
+osd.border.color: #1b1e24
