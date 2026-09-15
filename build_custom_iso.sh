@@ -5,6 +5,8 @@
 # fa fallire customize_airootfs.sh con "useradd: user 'liveuser' already exists".
 set -euo pipefail
 
+sudo rm -rf ./out ./work
+
 cd "$(dirname "$0")"
 
 # Copia i file base del profilo releng mancanti (non sovrascrive i nostri)
