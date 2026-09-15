@@ -55,6 +55,7 @@ plank
 conky
 terminator
 rofi
+picom
 
 # --- Rete ---
 networkmanager
