@@ -3,8 +3,8 @@
 
 # Wallpaper / sfondo minimale se feh è disponibile
 command -v feh >/dev/null 2>&1 && feh --bg-fill /usr/local/share/wallpaper/wallpaper.png 2>/dev/null &
-command -v plank >/dev/null 2>&1 && plank &
-command -v conky >/dev/null 2>&1 && conky &
+#command -v plank >/dev/null 2>&1 && plank &
+#command -v conky >/dev/null 2>&1 && conky &
 #command -v picom >/dev/null 2>&1 && picom --backend xrender --no-fading-openclose --no-vsync -b &
 
 # Barra di stato minimale

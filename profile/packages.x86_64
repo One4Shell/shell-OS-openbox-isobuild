@@ -51,11 +51,8 @@ lxappearance
 tint2
 feh
 xterm
-plank
-conky
 terminator
 rofi
-picom
 lxrandr
 
 # --- Rete ---
@@ -95,9 +92,8 @@ slirp4netns
 crun
 
 # --- Node.js / bum ---
-#nodejs
-#npm
-bum
+nodejs
+npm
 
 # --- PHP ---
 php
