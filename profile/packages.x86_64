@@ -33,6 +33,12 @@ xorg-xinit
 xorg-xrandr
 xorg-xset
 mesa
+vulkan-radeon
+libva-mesa-driver
+
+# --- Verifica driver grafici ---
+#vulkan-tools
+#libva-utils
 
 # --- Login manager grafico ---
 lightdm
@@ -45,6 +51,9 @@ lxappearance
 tint2
 feh
 xterm
+plank
+conky
+terminator
 
 # --- Rete ---
 networkmanager

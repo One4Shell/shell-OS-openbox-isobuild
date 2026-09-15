@@ -1,0 +1,4 @@
+# Permetti a liveuser (gruppo wheel) di usare sudo senza password nella live.
+# Necessario perché il /etc/sudoers di default del pacchetto sudo ha la riga
+# "%wheel ALL=(ALL:ALL) ALL" commentata.
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL

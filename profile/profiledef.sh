@@ -28,6 +28,8 @@ airootfs_image_tool_options=('-comp' 'zstd' '-Xcompression-level' '19')
 
 file_permissions=(
   ["/etc/shadow"]="0:0:400"
+  ["/etc/sudoers.d"]="0:0:750"
+  ["/etc/sudoers.d/10-liveuser"]="0:0:440"
   ["/root"]="0:0:750"
   ["/root/customize_airootfs.sh"]="0:0:755"
   ["/etc/skel/.xprofile"]="1000:1000:644"
