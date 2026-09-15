@@ -42,10 +42,22 @@ Aggiungi o rimuovi una riga per pacchetto (un pacchetto per riga, i commenti ini
 ## Build locale (opzionale)
 
 ```bash
+./build_custom_iso.sh
+```
+
+Oppure manualmente, **pulendo sempre la work dir prima**:
+
+```bash
+sudo rm -rf work out
 sudo mkarchiso -v -w work/ -o out/ profile/
 ```
 
 L'ISO risultante sarà disponibile nella cartella `out/`.
+
+> ⚠️ Non rilanciare `mkarchiso` su una `work/` già esistente: mkarchiso non
+> ripulisce l'airootfs, quindi i file creati da `customize_airootfs.sh`
+> (utente `liveuser`, gruppo `autologin`, servizi abilitati) restano e lo script
+> fallisce con `useradd: user 'liveuser' already exists`.
 
 ## Build automatica su GitHub Actions
 
