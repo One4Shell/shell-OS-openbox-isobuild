@@ -1,0 +1,4 @@
+# GTK2 - tema e palette ShellOS (colori da ~/.config/tint2/tint2rc)
+gtk-theme-name="HighContrastInverse"
+gtk-icon-theme-name="Colorful-Dark-Icons"
+gtk-font-name="JetBrainsMono Nerd Font 11"

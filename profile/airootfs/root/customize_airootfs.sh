@@ -39,4 +39,11 @@ sed -i 's/^#autologin-user=.*/autologin-user=liveuser/' /etc/lightdm/lightdm.con
 sed -i 's/^#autologin-user-timeout=.*/autologin-user-timeout=0/' /etc/lightdm/lightdm.conf
 sed -i 's/^#autologin-session=.*/autologin-session=openbox/' /etc/lightdm/lightdm.conf
 
+# LightDM GTK greeter: JetBrainsMono Nerd Font come font di default
+if grep -q '^font-name=' /etc/lightdm/lightdm-gtk-greeter.conf 2>/dev/null; then
+  sed -i 's/^font-name=.*/font-name=JetBrainsMono Nerd Font 11/' /etc/lightdm/lightdm-gtk-greeter.conf
+else
+  sed -i '/^\[greeter\]/a font-name=JetBrainsMono Nerd Font 11' /etc/lightdm/lightdm-gtk-greeter.conf
+fi
+
 exit 0

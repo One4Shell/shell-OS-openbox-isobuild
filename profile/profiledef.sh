@@ -33,6 +33,7 @@ file_permissions=(
   ["/root"]="0:0:750"
   ["/root/customize_airootfs.sh"]="0:0:755"
   ["/etc/skel/.xprofile"]="1000:1000:644"
+  ["/etc/skel/.gtkrc-2.0"]="1000:1000:644"
   ["/etc/skel/.config"]="1000:1000:750"
   ["/etc/skel/.config/openbox"]="1000:1000:750"
   ["/etc/skel/.config/openbox/autostart"]="1000:1000:755"

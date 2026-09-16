@@ -1,7 +1,7 @@
-XTerm*background: #0d0d0d
+XTerm*background: #2f343f
 XTerm*foreground: #f2f2f2
 XTerm*renderFont: true
-XTerm*faceName: monospace
+XTerm*faceName: JetBrainsMono Nerd Font Mono
 XTerm*faceSize: 11
 
 XTerm*borderWidth: 0

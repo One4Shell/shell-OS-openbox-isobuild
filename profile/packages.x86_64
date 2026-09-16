@@ -43,11 +43,12 @@ libva-mesa-driver
 # --- Login manager grafico ---
 lightdm
 lightdm-gtk-greeter
+xdg-user-dirs
 
 # --- Window manager ---
 openbox
 pcmanfm
-lxappearance
+#lxappearance
 tint2
 feh
 xterm
@@ -72,6 +73,9 @@ htop
 unzip
 zip
 openssh
+
+# --- Font di default (Nerd Font) ---
+ttf-jetbrains-mono-nerd
 
 # --- Internet ---
 chromium
