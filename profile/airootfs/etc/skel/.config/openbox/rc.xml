@@ -190,6 +190,34 @@
 </dock>
 
 <keyboard>
+
+
+  <keybind key="W-e">
+      <action name="Execute">
+        <command>pcmanfm</command>
+      </action>
+  </keybind>
+
+   <keybind key="W-q">
+      <action name="Execute">
+        <command>xterm</command>
+      </action>
+    </keybind>
+
+     <keybind key="W-w">
+      <action name="Execute">
+        <command>chromium</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-r">
+      <action name="Execute">
+        <command>rofi -show drun</command>
+      </action>
+    </keybind>
+
+  
+
   <chainQuitKey>C-g</chainQuitKey>
 
   <!-- Keybindings for desktop switching -->
@@ -298,16 +326,6 @@
     </action>
   </keybind>
 
-  <!-- Keybindings for running applications -->
-  <keybind key="W-e">
-    <action name="Execute">
-      <startupnotify>
-        <enabled>true</enabled>
-        <name>Konqueror</name>
-      </startupnotify>
-      <command>kfmclient openProfile filemanagement</command>
-    </action>
-  </keybind>
 </keyboard>
 
 <mouse>
