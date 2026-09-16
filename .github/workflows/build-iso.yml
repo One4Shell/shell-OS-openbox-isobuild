@@ -57,7 +57,9 @@ jobs:
         run: mv out/*.iso out/shellos-latest-x86_64.iso && ls -lh out
 
       - name: Compute checksum
-        run: sha256sum out/*.iso > out/sha256sums.txt && cat out/sha256sums.txt
+        # Nome file senza "out/": sha256sums.txt viene pubblicato in Release e
+        # l'utente verifica con "sha256sum -c" nella cartella di download.
+        run: (cd out && sha256sum shellos-latest-x86_64.iso) > out/sha256sums.txt && cat out/sha256sums.txt
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
@@ -68,26 +70,59 @@ jobs:
             out/sha256sums.txt
           retention-days: 90
 
+      - name: Split ISO into parts under 2 GiB
+        # GitHub Releases rifiuta asset >= 2147483648 byte (HTTP 422 "size
+        # must be less than 2147483648"): la ISO viene spezzata in parti da
+        # 2000M, ricomponibili con lo script join-iso.sh pubblicato in release.
+        run: |
+          split -b 2000M -d --suffix-length=2 \
+            out/shellos-latest-x86_64.iso out/shellos-latest-x86_64.iso.part-
+          cat > out/join-iso.sh <<'EOF'
+          #!/usr/bin/env bash
+          # Ricompone la ISO dalle parti .part-* e ne verifica il checksum.
+          # Usage: scaricare tutti i file della release in una stessa cartella,
+          # poi eseguire: bash join-iso.sh
+          set -euo pipefail
+          cat shellos-latest-x86_64.iso.part-* > shellos-latest-x86_64.iso
+          sha256sum -c sha256sums.txt
+          EOF
+          ls -lh out/
+
       - name: Publish GitHub Release
         # Release rolling con tag fisso: contiene sempre e solo la ISO più
-        # recente, che resta disponibile fino alla build successiva.
+        # recente, spezzata in parti .part-* (limite 2 GiB per asset), più
+        # checksum e script di ricomposizione.
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           TAG="shellos-latest"
-          DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/shellos-latest-x86_64.iso"
           NOTES="Build automatica del $(date -u +%Y-%m-%d).
 
           Commit: ${GITHUB_SHA}
 
-          Download diretto: ${DOWNLOAD_URL}"
+          La ISO supera i 2 GiB, limite massimo per un singolo asset di GitHub
+          Releases, quindi è pubblicata spezzata in parti .part-*. Per
+          ricomporla scarica tutti i file della release in una stessa cartella
+          ed esegui:
+
+              bash join-iso.sh
+
+          Equivale a concatenare le parti (cat shellos-latest-x86_64.iso.part-*
+          > shellos-latest-x86_64.iso) e verificare sha256sum -c sha256sums.txt.
+
+          Su Windows (PowerShell o cmd):
+              copy /b shellos-latest-x86_64.iso.part-00+shellos-latest-x86_64.iso.part-01 shellos-latest-x86_64.iso"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release edit "$TAG" --title "ShellOS (latest)" --notes "$NOTES"
-            gh release upload "$TAG" out/shellos-latest-x86_64.iso out/sha256sums.txt --clobber
+            gh release edit "$TAG" --title "ShellOS (latest)" --notes "$NOTES" --latest
+            # Rimuove tutti gli asset vecchi: se la build precedente aveva un
+            # numero di parti diverso, --clobber da solo lascerebbe file orfani.
+            gh release view "$TAG" --json assets --jq '.assets[].name' \
+              | xargs -r -n1 gh release delete-asset "$TAG" --yes
           else
-            gh release create "$TAG" out/shellos-latest-x86_64.iso out/sha256sums.txt \
+            gh release create "$TAG" \
               --title "ShellOS (latest)" \
               --notes "$NOTES" \
               --latest
           fi
+          gh release upload "$TAG" out/shellos-latest-x86_64.iso.part-* out/sha256sums.txt out/join-iso.sh

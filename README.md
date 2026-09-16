@@ -69,10 +69,21 @@ Il workflow **Build ShellOS ISO** (`.github/workflows/build-iso.yml`) esegue la 
 
 Al termine della build, l'ISO è scaricabile come **artifact** (`shellos-iso`, conservato 90 giorni) dalla pagina di riepilogo dell'esecuzione, sotto la sezione "Artifacts".
 
-Ad ogni build viene inoltre aggiornata una **GitHub Release rolling** con tag fisso `shellos-latest`, che contiene sempre e solo l'ISO più recente (rinominata `shellos-latest-x86_64.iso`) e il file `sha256sums.txt`. La ISO resta quindi disponibile a questo URL stabile fino alla build successiva:
+Ad ogni build viene inoltre aggiornata una **GitHub Release rolling** con tag fisso `shellos-latest`, che contiene sempre e solo l'ISO più recente. Poiché la ISO supera i 2 GiB (limite massimo per un asset di GitHub Releases), viene pubblicata **spezzata in parti** `shellos-latest-x86_64.iso.part-*`, insieme a `sha256sums.txt` e allo script `join-iso.sh`.
 
+Per ricomporre la ISO, scarica tutti i file della release ([tag `shellos-latest`](https://github.com/One4Shell/shell-OS-openbox-isobuild/releases/tag/shellos-latest)) in una stessa cartella e poi:
+
+```bash
+bash join-iso.sh
+# equivale a:
+# cat shellos-latest-x86_64.iso.part-* > shellos-latest-x86_64.iso
+# sha256sum -c sha256sums.txt
 ```
-https://github.com/One4Shell/shell-OS-openbox-isobuild/releases/latest/download/shellos-latest-x86_64.iso
+
+Su Windows (cmd):
+
+```cmd
+copy /b shellos-latest-x86_64.iso.part-00+shellos-latest-x86_64.iso.part-01 shellos-latest-x86_64.iso
 ```
 
 ## Note
