@@ -170,7 +170,7 @@ launcher_tooltip = 0
 #-------------------------------------
 # Clock
 rounded = 10
-time1_format = %a %-d // %H:%M
+time1_format = %a %-d | %H:%M
 time2_format = 
 time1_font = JetBrainsMono Nerd Font 8
 time1_timezone = 

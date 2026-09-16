@@ -18,4 +18,10 @@ command -v nm-applet >/dev/null 2>&1 && nm-applet &
 
 xrdb -load ~/.Xresources &
 
+# Esegui xdg-user-dirs-update solo al primo avvio di X
+if [ ! -f ~/.config/xdg-dirs-done ]; then
+    xdg-user-dirs-update
+    touch ~/.config/xdg-dirs-done
+fi
+
 exit 0
