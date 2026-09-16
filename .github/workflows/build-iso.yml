@@ -12,11 +12,12 @@ on:
     # Ogni 1° del mese alle 03:00 UTC
     - cron: '0 3 1 * *'
   workflow_dispatch:
-    inputs:
-      publish_release:
-        description: 'Pubblica anche una GitHub Release con la ISO'
-        type: boolean
-        default: false
+
+# Serializza le build: due esecuzioni concorrenti (push + cron) non devono
+# sovrascriversi a vicenda sullo stesso tag rolling.
+concurrency:
+  group: build-iso
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -51,6 +52,10 @@ jobs:
           mkarchiso -v -w work -o out profile/
           ls -lh out
 
+      - name: Rename ISO to a stable filename
+        # Nome fisso, così l'URL di download diretto resta valido tra le build.
+        run: mv out/*.iso out/shellos-latest-x86_64.iso && ls -lh out
+
       - name: Compute checksum
         run: sha256sum out/*.iso > out/sha256sums.txt && cat out/sha256sums.txt
 
@@ -61,18 +66,27 @@ jobs:
           path: |
             out/*.iso
             out/sha256sums.txt
-          retention-days: 14
+          retention-days: 90
 
       - name: Publish GitHub Release
-        if: github.event_name == 'schedule' || inputs.publish_release == true
+        # Release rolling con tag fisso: contiene sempre e solo la ISO più
+        # recente, che resta disponibile fino alla build successiva.
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG="shellos-$(date +%Y.%m)"
+          TAG="shellos-latest"
+          DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/shellos-latest-x86_64.iso"
+          NOTES="Build automatica del $(date -u +%Y-%m-%d).
+
+          Commit: ${GITHUB_SHA}
+
+          Download diretto: ${DOWNLOAD_URL}"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" out/*.iso out/sha256sums.txt --clobber
+            gh release edit "$TAG" --title "ShellOS (latest)" --notes "$NOTES"
+            gh release upload "$TAG" out/shellos-latest-x86_64.iso out/sha256sums.txt --clobber
           else
-            gh release create "$TAG" out/*.iso out/sha256sums.txt \
-              --title "ShellOS $TAG" \
-              --notes "Build automatica del $(date +%Y-%m-%d)."
+            gh release create "$TAG" out/shellos-latest-x86_64.iso out/sha256sums.txt \
+              --title "ShellOS (latest)" \
+              --notes "$NOTES" \
+              --latest
           fi

@@ -65,11 +65,15 @@ Il workflow **Build ShellOS ISO** (`.github/workflows/build-iso.yml`) esegue la 
 
 - ad ogni push su `main` che modifica la cartella `profile/`, lo script `build_custom_iso.sh` o il workflow stesso;
 - una volta al mese (cron `0 3 1 * *`, il 1° del mese alle 03:00 UTC);
-- manualmente da **Actions → Build ShellOS ISO → Run workflow** (opzione `publish_release` per pubblicare anche una Release).
+- manualmente da **Actions → Build ShellOS ISO → Run workflow**.
 
-Al termine della build, l'ISO è scaricabile come **artifact** (`shellos-iso`, conservato 14 giorni) dalla pagina di riepilogo dell'esecuzione, sotto la sezione "Artifacts".
+Al termine della build, l'ISO è scaricabile come **artifact** (`shellos-iso`, conservato 90 giorni) dalla pagina di riepilogo dell'esecuzione, sotto la sezione "Artifacts".
 
-La build mensile (e le esecuzioni manuali con `publish_release` attivo) crea inoltre una **GitHub Release** con tag `shellos-YYYY.MM`, allegando l'ISO e il file `sha256sums.txt`.
+Ad ogni build viene inoltre aggiornata una **GitHub Release rolling** con tag fisso `shellos-latest`, che contiene sempre e solo l'ISO più recente (rinominata `shellos-latest-x86_64.iso`) e il file `sha256sums.txt`. La ISO resta quindi disponibile a questo URL stabile fino alla build successiva:
+
+```
+https://github.com/One4Shell/shell-OS-openbox-isobuild/releases/latest/download/shellos-latest-x86_64.iso
+```
 
 ## Note
 
