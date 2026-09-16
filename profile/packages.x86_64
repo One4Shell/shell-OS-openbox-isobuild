@@ -21,6 +21,7 @@ bash-completion
 # --- Boot loader (necessari per i boot mode BIOS/UEFI abilitati in profiledef.sh) ---
 syslinux
 grub
+edk2-shell
 efibootmgr
 dosfstools
 mtools

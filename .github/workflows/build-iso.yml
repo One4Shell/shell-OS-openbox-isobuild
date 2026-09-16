@@ -31,8 +31,10 @@ jobs:
       options: --privileged
     steps:
       - name: Install build dependencies
-        # git serve ad actions/checkout; github-cli per creare la Release
-        run: pacman -Syu --noconfirm git archiso github-cli
+        # git serve ad actions/checkout; github-cli per creare la Release.
+        # grub fornisce grub-mkstandalone/grub-install richiesti da mkarchiso
+        # per il boot mode 'uefi.grub' (altrimenti: "grub-install is not available").
+        run: pacman -Syu --noconfirm git archiso github-cli grub
 
       - name: Checkout
         uses: actions/checkout@v4
