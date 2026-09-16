@@ -1,92 +1,134 @@
-! ============================================================
-! ShellOS-Dark - tema Openbox per l'ISO arch-dev-live
-! Palette coerente con tint2:
-!   pannello #2f343f | accento #b181ff | testo #a1a8b9
-!   testo su accento #131c26 | urgent #c67d6f
-! ============================================================
+# Arc Openbox theme
+# Copyright (C) 2015 Dino Duratović <dinomol at mail dot com>
+#
+# Inspired by and made for horst3180's Arc GTK theme
+# https://github.com/horst3180/Arc-theme
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-!! --- Bordi e geometria ---
-border.width: 1
+### WINDOW
+border.width: 2
+
 window.client.padding.width: 0
 window.client.padding.height: 0
 window.handle.width: 0
-padding.height: 4
-padding.width: 6
 
-!! --- Titlebar finestra attiva ---
+padding.width: 4
+padding.height: 4
+
+window.active.border.color: #2f343f
+window.inactive.border.color: #2f343f
+window.active.title.separator.color: #2f343f
+window.inactive.title.separator.color: #2f343f
+window.active.client.color: #2f343f
+window.inactive.client.color: #2f343f
+
+window.active.label.text.color: #a1a8b9
+window.inactive.label.text.color: #7F8388
+
+window.active.button.unpressed.image.color: #a1a8b9
+window.active.button.pressed.image.color: #b181ff
+window.active.button.disabled.image.color: #2f343f
+window.active.button.hover.image.color: #b4bac6
+window.active.button.toggled.unpressed.image.color: #a1a8b9
+window.active.button.toggled.pressed.image.color: #b181ff
+window.active.button.toggled.hover.image.color: #b4bac6
+window.inactive.button.unpressed.image.color: #1F2328
+window.inactive.button.pressed.image.color: #b181ff
+window.inactive.button.disabled.image.color: #2f343f
+window.inactive.button.hover.image.color: #b4bac6
+window.inactive.button.toggled.unpressed.image.color: #1F2328
+window.inactive.button.toggled.pressed.image.color: #b181ff
+window.inactive.button.toggled.hover.image.color: #b4bac6
+
 window.active.title.bg: flat solid
 window.active.title.bg.color: #2f343f
-window.active.label.text.color: #a1a8b9
-window.active.label.text.font: shadow=n
-
-!! --- Titlebar finestra inattiva ---
+window.active.label.bg: flat solid
+window.active.label.bg.color: #2f343f
+#window.active.handle.bg: texture
+#window.active.grip.bg: texture
 window.inactive.title.bg: flat solid
-window.inactive.title.bg.color: #1b1e24
-window.inactive.label.text.color: #5c6370
-window.inactive.label.text.font: shadow=n
+window.inactive.title.bg.color: #2f343f
+window.inactive.label.bg: flat solid
+window.inactive.label.bg.color: #2f343f
+#window.inactive.handle.bg: texture
+#window.inactive.grip.bg: texture
 
-!! --- Bordi finestra ---
-window.active.border.color: #4c525c
-window.inactive.border.color: #1b1e24
-window.active.title.separator.color: #2f343f
-window.inactive.title.separator.color: #1b1e24
+window.active.button.unpressed.bg: parentrelative
+window.active.button.pressed.bg: parentrelative
+window.active.button.hover.bg: parentrelative
+window.active.button.disabled.bg: parentrelative
+window.active.button.toggled.unpressed.bg: parentrelative
+window.active.button.toggled.pressed.bg: parentrelative
+window.active.button.toggled.hover.bg: parentrelative
+window.inactive.button.unpressed.bg: parentrelative
+window.inactive.button.pressed.bg: parentrelative
+window.inactive.button.hover.bg: parentrelative
+window.inactive.button.disabled.bg: parentrelative
+window.inactive.button.toggled.unpressed.bg: parentrelative
+window.inactive.button.toggled.pressed.bg: parentrelative
+window.inactive.button.toggled.hover.bg: parentrelative
 
-!! --- Handle e grip (visibili solo con window.handle.width > 0) ---
-window.active.handle.bg: flat solid
-window.active.handle.bg.color: #2f343f
-window.active.grip.bg: flat solid
-window.active.grip.bg.color: #2f343f
-window.inactive.handle.bg: flat solid
-window.inactive.handle.bg.color: #1b1e24
-window.inactive.grip.bg: flat solid
-window.inactive.grip.bg.color: #1b1e24
+window.label.text.justify: center
 
-!! --- Pulsanti titlebar ---
-window.active.button.unpressed.image.color: #a1a8b9
-window.active.button.pressed.image.color: #ffffff
-window.active.button.hover.image.color: #b181ff
-window.active.button.disabled.image.color: #4c525c
-window.inactive.button.unpressed.image.color: #5c6370
-window.inactive.button.pressed.image.color: #a1a8b9
-window.inactive.button.hover.image.color: #a1a8b9
-window.inactive.button.disabled.image.color: #1b1e24
+#window.active.label.text.font: text shadow
+#window.inactive.label.text.font: text shadow
 
-!! Close in evidenza (stesso rosso tenue dell'urgent di tint2)
-window.active.button.close.unpressed.image.color: #c67d6f
-window.active.button.close.hover.image.color: #ff9882
-window.active.button.close.pressed.image.color: #ff9882
-window.inactive.button.close.unpressed.image.color: #5c6370
-window.inactive.button.close.hover.image.color: #c67d6f
-window.inactive.button.close.pressed.image.color: #c67d6f
+### MENU
+menu.border.width: 8
+menu.separator.width: 1
+menu.separator.padding.width: 10
+menu.separator.padding.height: 2
 
-!! --- Menu (root menu / menu finestre) ---
-menu.border.width: 1
-menu.border.color: #1b1e24
 menu.overlap.x: 0
-menu.title.bg: flat solid
-menu.title.bg.color: #2f343f
+menu.overlap.y: 0
+
+menu.border.color: #2f343f
+menu.separator.color: #2f343f
+
 menu.title.text.color: #a1a8b9
-menu.title.text.justify: center
+menu.items.text.color: #a1a8b9
+menu.items.disabled.text.color: #76797F
+menu.items.active.text.color: #b181ff
+menu.items.active.disabled.text.color: #aeb0b6
+
 menu.items.bg: flat solid
 menu.items.bg.color: #2f343f
-menu.items.text.color: #a1a8b9
-menu.items.disabled.text.color: #5c6370
 menu.items.active.bg: flat solid
-menu.items.active.bg.color: #b181ff
-menu.items.active.text.color: #131c26
-menu.items.active.disabled.text.color: #5c6370
-menu.separator.width: 1
-menu.separator.padding.width: 6
-menu.separator.padding.height: 6
-menu.separator.color: #4c525c
+menu.items.active.bg.color: #2f343f
+menu.title.bg: flat solid
+menu.title.bg.color: #2f343f
 
-!! --- OSD (popup switch desktop / resize) ---
+menu.title.text.justify: center
+
+#menu.items.font: text shadow
+#menu.title.text.font: text shadow
+
+### OSD
+osd.border.width: 1
+
+osd.border.color: #2f343f
+
+osd.label.text.color: #a1a8b9
+
 osd.bg: flat solid
 osd.bg.color: #2f343f
-osd.label.text.color: #a1a8b9
+osd.label.bg: flat solid
+osd.label.bg.color: #2f343f
 osd.hilight.bg: flat solid
 osd.hilight.bg.color: #b181ff
 osd.unhilight.bg: flat solid
-osd.unhilight.bg.color: #1b1e24
-osd.border.width: 1
-osd.border.color: #1b1e24
+osd.unhilight.bg.color: #000000
+
+#osd.label.text.font: text shadow
