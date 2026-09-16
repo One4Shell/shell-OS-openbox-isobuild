@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  menu.xml - Menu del tasto destro di Openbox
+  Contiene esclusivamente le applicazioni grafiche installate
+  tramite profile/packages.x86_64.
+-->
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+  <menu id="root-menu" label="Openbox 3">
+
+  
+      <item label="Xterm" icon="utilities-terminal">
+        <action name="Execute">
+          <command>xterm</command>
+        </action>
+      </item>
+    <!-- Applicazioni -->
+    <item label="File manager" icon="system-file-manager">
+      <action name="Execute">
+        <command>pcmanfm</command>
+      </action>
+    </item>
+    <item label="Browser web" icon="help-browser">
+      <action name="Execute">
+        <command>chromium</command>
+      </action>
+    </item>
+    <item label="Visual Studio Code" icon="accessories-text-editor">
+      <action name="Execute">
+        <command>code</command>
+      </action>
+    </item>
+
+
+    <separator label="Settings"/>
+
+    <item label="Audio" icon="audio-volume-high">
+      <action name="Execute">
+        <command>pavucontrol</command>
+      </action>
+    </item>
+    <item label="Display" icon="preferences-desktop-display">
+      <action name="Execute">
+        <command>lxrandr</command>
+      </action>
+    </item>
+
+    <separator label="Session"/>
+
+    <menu id="session-menu" label="Sessione" icon="system-log-out">
+      <separator/>
+      <item label="Esci" icon="system-log-out">
+        <action name="Exit"/>
+      </item>
+      <item label="Reboot" icon="system-reboot">
+        <action name="Execute">
+          <command>systemctl reboot</command>
+        </action>
+      </item>
+      <item label="Power Off" icon="system-shutdown">
+        <action name="Execute">
+          <command>systemctl poweroff</command>
+        </action>
+      </item>
+    </menu>
+
+  </menu>
+
+</openbox_menu>
