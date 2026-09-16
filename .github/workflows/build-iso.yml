@@ -1,0 +1,76 @@
+name: Build ShellOS ISO
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'profile/**'
+      - 'build_custom_iso.sh'
+      - '.github/workflows/build-iso.yml'
+  schedule:
+    # Ogni 1° del mese alle 03:00 UTC
+    - cron: '0 3 1 * *'
+  workflow_dispatch:
+    inputs:
+      publish_release:
+        description: 'Pubblica anche una GitHub Release con la ISO'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-iso:
+    name: Build ISO
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+      # mkarchiso ha bisogno di loop device e mount: serve un container privilegiato
+      options: --privileged
+    steps:
+      - name: Install build dependencies
+        # git serve ad actions/checkout; github-cli per creare la Release
+        run: pacman -Syu --noconfirm git archiso github-cli
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare releng profile
+        # Completa i file base del profilo releng mancanti senza sovrascrivere
+        # le personalizzazioni (stessa logica di build_custom_iso.sh)
+        run: cp -rn /usr/share/archiso/configs/releng/* profile/
+
+      - name: Build ISO
+        # work/ e out/ vengono sempre rimossi prima della build
+        run: |
+          rm -rf work out
+          mkarchiso -v -w work -o out profile/
+          ls -lh out
+
+      - name: Compute checksum
+        run: sha256sum out/*.iso > out/sha256sums.txt && cat out/sha256sums.txt
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shellos-iso
+          path: |
+            out/*.iso
+            out/sha256sums.txt
+          retention-days: 14
+
+      - name: Publish GitHub Release
+        if: github.event_name == 'schedule' || inputs.publish_release == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="shellos-$(date +%Y.%m)"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" out/*.iso out/sha256sums.txt --clobber
+          else
+            gh release create "$TAG" out/*.iso out/sha256sums.txt \
+              --title "ShellOS $TAG" \
+              --notes "Build automatica del $(date +%Y-%m-%d)."
+          fi

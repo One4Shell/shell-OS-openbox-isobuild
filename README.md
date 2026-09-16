@@ -1,4 +1,4 @@
-# arch-dev-live
+# shell-os-live
 
 ISO Arch Linux personalizzata basata su **archiso**, con ambiente grafico minimale **Openbox** e stack di sviluppo pronto all'uso: **VS Code**, **Podman**, **Node.js** e **PHP**.
 
@@ -17,8 +17,8 @@ ISO Arch Linux personalizzata basata su **archiso**, con ambiente grafico minima
 ## Clonare il repository
 
 ```bash
-git clone https://github.com/<tuo-utente>/arch-dev-live.git
-cd arch-dev-live
+git clone https://github.com/<tuo-utente>/shell-os-live.git
+cd shell-os-live
 ```
 
 Nota: la cartella `profile/` in questo repository contiene solo i file personalizzati.
@@ -61,13 +61,15 @@ L'ISO risultante sarà disponibile nella cartella `out/`.
 
 ## Build automatica su GitHub Actions
 
-Ogni push su `main` che modifica la cartella `profile/` o il workflow stesso avvia automaticamente la build. Puoi anche avviarla manualmente:
+Il workflow **Build ShellOS ISO** (`.github/workflows/build-iso.yml`) esegue la build in un container `archlinux` privilegiato e viene avviato:
 
-1. Vai su **Actions** nel repository GitHub.
-2. Seleziona il workflow **Build Arch Dev Live ISO**.
-3. Clicca su **Run workflow**.
+- ad ogni push su `main` che modifica la cartella `profile/`, lo script `build_custom_iso.sh` o il workflow stesso;
+- una volta al mese (cron `0 3 1 * *`, il 1° del mese alle 03:00 UTC);
+- manualmente da **Actions → Build ShellOS ISO → Run workflow** (opzione `publish_release` per pubblicare anche una Release).
 
-Al termine della build, l'ISO sarà scaricabile come **artifact** (`arch-dev-live-iso`) dalla pagina di riepilogo dell'esecuzione, sotto la sezione "Artifacts".
+Al termine della build, l'ISO è scaricabile come **artifact** (`shellos-iso`, conservato 14 giorni) dalla pagina di riepilogo dell'esecuzione, sotto la sezione "Artifacts".
+
+La build mensile (e le esecuzioni manuali con `publish_release` attivo) crea inoltre una **GitHub Release** con tag `shellos-YYYY.MM`, allegando l'ISO e il file `sha256sums.txt`.
 
 ## Note
 
