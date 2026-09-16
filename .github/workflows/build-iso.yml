@@ -74,6 +74,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           TAG="shellos-latest"
           DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/shellos-latest-x86_64.iso"
           NOTES="Build automatica del $(date -u +%Y-%m-%d).
