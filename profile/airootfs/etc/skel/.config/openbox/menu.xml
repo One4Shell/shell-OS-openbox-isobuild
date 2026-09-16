@@ -9,7 +9,7 @@
   <menu id="root-menu" label="Openbox 3">
 
   
-      <item label="Xterm" icon="utilities-terminal">
+      <item label="Terminal" icon="utilities-terminal">
         <action name="Execute">
           <command>xterm</command>
         </action>
